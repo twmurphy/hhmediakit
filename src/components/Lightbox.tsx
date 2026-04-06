@@ -35,29 +35,36 @@ export function Lightbox({ item, onClose }: LightboxProps) {
 
       {/* Content — stop propagation so clicking inside doesn't close */}
       <div
-        className="flex flex-col items-center gap-5 max-w-2xl w-full"
+        className="flex flex-row items-center gap-6 max-h-[85vh]"
         onClick={e => e.stopPropagation()}
       >
+        {/* Photo */}
         <img
           src={item.src}
           alt={item.name}
-          className="max-h-[75vh] max-w-full object-contain rounded-2xl"
+          className="max-h-[85vh] max-w-[60vw] object-contain rounded-2xl"
         />
 
-        <div className="flex flex-col items-center gap-1 text-center">
-          <p
-            className="text-white text-xl leading-tight"
-            style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900 }}
-          >
-            {item.name}
-          </p>
-          <p
-            className="text-white/60 text-sm"
-            style={{ fontFamily: 'Poppins, sans-serif' }}
-          >
-            {item.source}
-          </p>
-          <p className="text-white/40 text-xs mt-0.5" style={{ fontFamily: 'Poppins, sans-serif' }}>
+        {/* Metadata card */}
+        <div className="flex flex-col gap-4 bg-white/10 backdrop-blur-sm rounded-2xl p-6 min-w-[200px] max-w-[220px]">
+          <div className="flex flex-col gap-1">
+            <p
+              className="text-white text-lg leading-tight"
+              style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900 }}
+            >
+              {item.name}
+            </p>
+            <p
+              className="text-white/60 text-sm"
+              style={{ fontFamily: 'Poppins, sans-serif' }}
+            >
+              {item.source}
+            </p>
+          </div>
+
+          <div className="h-px bg-white/10" />
+
+          <p className="text-white/40 text-xs" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Photo by{' '}
             <a
               href="https://www.instagram.com/baggincats_cosplay"
@@ -68,17 +75,17 @@ export function Lightbox({ item, onClose }: LightboxProps) {
               @baggincats_cosplay
             </a>
           </p>
-        </div>
 
-        <a
-          href={item.src}
-          download={filename}
-          className="flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#1d1d1f] text-sm hover:bg-white/90 transition-colors"
-          style={{ fontFamily: 'Poppins, sans-serif' }}
-        >
-          <Download size={14} />
-          Download
-        </a>
+          <a
+            href={item.src}
+            download={filename}
+            className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white text-[#1d1d1f] text-sm hover:bg-white/90 transition-colors mt-auto"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
+          >
+            <Download size={14} />
+            Download
+          </a>
+        </div>
       </div>
     </div>
   )
