@@ -18,7 +18,7 @@ export function About() {
 
           {/* Headshot */}
           <div className="shrink-0 flex justify-center md:block">
-            <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden">
+            <div className="w-80 h-80 md:w-[28rem] md:h-[28rem] rounded-full overflow-hidden">
               <img
                 src="/headshots/himbo-1.jpg"
                 alt="Himbo Husbando"
