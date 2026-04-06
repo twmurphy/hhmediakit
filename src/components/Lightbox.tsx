@@ -10,7 +10,6 @@ interface LightboxProps {
 }
 
 export function Lightbox({ item, onClose, onPrev, onNext }: LightboxProps) {
-  // Track which src has finished loading — derived loading state avoids timing races
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null)
   const loading = item ? loadedSrc !== item.src : false
 
@@ -31,7 +30,7 @@ export function Lightbox({ item, onClose, onPrev, onNext }: LightboxProps) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-6"
+      className="fixed inset-0 bg-black/20 z-50 flex items-center justify-center gap-3 px-3 py-3"
       onClick={onClose}
     >
       {/* Prev button */}
@@ -43,37 +42,30 @@ export function Lightbox({ item, onClose, onPrev, onNext }: LightboxProps) {
         <ChevronLeft size={22} />
       </button>
 
-      {/* Image + overlays */}
+      {/* Image frame */}
       <div
-        className="relative max-h-[85vh] aspect-[9/16]"
-        style={{ maxWidth: 'min(80vw, calc(85vh * 9 / 16))' }}
+        className="relative bg-[#1c1c1e] rounded-2xl overflow-hidden"
+        style={{
+          width: 'min(92vw, calc(92vh * 2 / 3))',
+          height: 'min(92vh, calc(92vw * 3 / 2))',
+        }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Blurred thumbnail — instant placeholder */}
-        <img
-          src={item.thumb}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 w-full h-full object-cover rounded-2xl blur-sm scale-105"
-        />
-
         {/* Spinner */}
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <Loader2 size={32} className="text-white/70 animate-spin" />
+            <Loader2 size={32} className="text-white/40 animate-spin" />
           </div>
         )}
 
-        {/* Full-res image — keyed by src so it remounts on navigation */}
+        {/* Full-res image */}
         <img
           key={item.src}
           src={item.src}
           alt={item.name}
           onLoad={() => setLoadedSrc(item.src)}
-          className={[
-            'absolute inset-0 w-full h-full object-contain rounded-2xl transition-opacity duration-300',
-            loading ? 'opacity-0' : 'opacity-100',
-          ].join(' ')}
+          className="w-full h-full object-cover"
+          style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.3s' }}
         />
 
         {/* Close button */}
@@ -86,22 +78,15 @@ export function Lightbox({ item, onClose, onPrev, onNext }: LightboxProps) {
         </button>
 
         {/* Bottom metadata bar */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 rounded-b-2xl bg-black/60 backdrop-blur-sm px-5 py-4 flex items-center justify-between gap-4">
+        <div className="absolute bottom-0 left-0 right-0 z-20 bg-black/60 backdrop-blur-sm px-5 py-4 flex items-center justify-between gap-4">
           <div className="flex items-baseline gap-3 min-w-0">
-            <p
-              className="text-white text-base leading-tight shrink-0"
-              style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900 }}
-            >
+            <p className="text-white text-base leading-tight shrink-0 font-black" style={{ fontFamily: 'Poppins, sans-serif' }}>
               {item.name}
             </p>
-            <p
-              className="text-white/50 text-sm truncate"
-              style={{ fontFamily: 'Poppins, sans-serif' }}
-            >
+            <p className="text-white/50 text-sm truncate" style={{ fontFamily: 'Poppins, sans-serif' }}>
               {item.source}
             </p>
           </div>
-
           <div className="flex items-center gap-3 shrink-0">
             <p className="text-white/40 text-xs hidden sm:block" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Photo by{' '}
