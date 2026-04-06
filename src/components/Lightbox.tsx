@@ -1,19 +1,29 @@
-import { useEffect } from 'react'
-import { X, Download } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { X, Download, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react'
 import type { CosplayItem } from './Gallery'
 
 interface LightboxProps {
   item: CosplayItem | null
   onClose: () => void
+  onPrev: () => void
+  onNext: () => void
 }
 
-export function Lightbox({ item, onClose }: LightboxProps) {
+export function Lightbox({ item, onClose, onPrev, onNext }: LightboxProps) {
+  // Track which src has finished loading — derived loading state avoids timing races
+  const [loadedSrc, setLoadedSrc] = useState<string | null>(null)
+  const loading = item ? loadedSrc !== item.src : false
+
   useEffect(() => {
     if (!item) return
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape')     onClose()
+      if (e.key === 'ArrowLeft')  onPrev()
+      if (e.key === 'ArrowRight') onNext()
+    }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [item, onClose])
+  }, [item, onClose, onPrev, onNext])
 
   if (!item) return null
 
@@ -24,29 +34,59 @@ export function Lightbox({ item, onClose }: LightboxProps) {
       className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-6"
       onClick={onClose}
     >
+      {/* Prev button */}
+      <button
+        onClick={e => { e.stopPropagation(); onPrev() }}
+        className="shrink-0 rounded-full bg-white/15 hover:bg-white/30 text-white p-3 transition-colors backdrop-blur-sm mr-4"
+        aria-label="Previous"
+      >
+        <ChevronLeft size={22} />
+      </button>
+
       {/* Image + overlays */}
       <div
-        className="relative max-h-[85vh]"
+        className="relative max-h-[85vh] aspect-[9/16]"
+        style={{ maxWidth: 'min(80vw, calc(85vh * 9 / 16))' }}
         onClick={e => e.stopPropagation()}
       >
+        {/* Blurred thumbnail — instant placeholder */}
         <img
-          src={item.src}
-          alt={item.name}
-          className="max-h-[85vh] max-w-[90vw] object-contain rounded-2xl block"
+          src={item.thumb}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover rounded-2xl blur-sm scale-105"
         />
 
-        {/* Close button — top-right of image */}
+        {/* Spinner */}
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <Loader2 size={32} className="text-white/70 animate-spin" />
+          </div>
+        )}
+
+        {/* Full-res image — keyed by src so it remounts on navigation */}
+        <img
+          key={item.src}
+          src={item.src}
+          alt={item.name}
+          onLoad={() => setLoadedSrc(item.src)}
+          className={[
+            'absolute inset-0 w-full h-full object-contain rounded-2xl transition-opacity duration-300',
+            loading ? 'opacity-0' : 'opacity-100',
+          ].join(' ')}
+        />
+
+        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 transition-colors"
+          className="absolute top-3 right-3 z-20 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 transition-colors"
           aria-label="Close"
         >
           <X size={18} />
         </button>
 
         {/* Bottom metadata bar */}
-        <div className="absolute bottom-0 left-0 right-0 rounded-b-2xl bg-black/60 backdrop-blur-sm px-5 py-4 flex items-center justify-between gap-4">
-          {/* Left: name + source */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 rounded-b-2xl bg-black/60 backdrop-blur-sm px-5 py-4 flex items-center justify-between gap-4">
           <div className="flex items-baseline gap-3 min-w-0">
             <p
               className="text-white text-base leading-tight shrink-0"
@@ -62,7 +102,6 @@ export function Lightbox({ item, onClose }: LightboxProps) {
             </p>
           </div>
 
-          {/* Right: credit + download */}
           <div className="flex items-center gap-3 shrink-0">
             <p className="text-white/40 text-xs hidden sm:block" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Photo by{' '}
@@ -87,6 +126,15 @@ export function Lightbox({ item, onClose }: LightboxProps) {
           </div>
         </div>
       </div>
+
+      {/* Next button */}
+      <button
+        onClick={e => { e.stopPropagation(); onNext() }}
+        className="shrink-0 rounded-full bg-white/15 hover:bg-white/30 text-white p-3 transition-colors backdrop-blur-sm ml-4"
+        aria-label="Next"
+      >
+        <ChevronRight size={22} />
+      </button>
     </div>
   )
 }

@@ -18,7 +18,10 @@ const cosplays: CosplayItem[] = [
 ]
 
 export function Gallery() {
-  const [selected, setSelected] = useState<CosplayItem | null>(null)
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+
+  const prev = () => setSelectedIndex(i => i !== null ? (i - 1 + cosplays.length) % cosplays.length : null)
+  const next = () => setSelectedIndex(i => i !== null ? (i + 1) % cosplays.length : null)
 
   return (
     <section className="bg-white py-24 px-6">
@@ -34,11 +37,11 @@ export function Gallery() {
           Cosplays
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {cosplays.map((item) => (
+          {cosplays.map((item, i) => (
             <div
               key={item.src}
               className="aspect-[9/16] overflow-hidden rounded-2xl bg-[#f5f5f7] cursor-pointer group relative"
-              onClick={() => setSelected(item)}
+              onClick={() => setSelectedIndex(i)}
             >
               <img
                 src={item.thumb}
@@ -51,7 +54,12 @@ export function Gallery() {
         </div>
       </div>
 
-      <Lightbox item={selected} onClose={() => setSelected(null)} />
+      <Lightbox
+        item={selectedIndex !== null ? cosplays[selectedIndex] : null}
+        onClose={() => setSelectedIndex(null)}
+        onPrev={prev}
+        onNext={next}
+      />
     </section>
   )
 }
