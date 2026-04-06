@@ -3,17 +3,18 @@ import { Lightbox } from './Lightbox'
 
 export interface CosplayItem {
   src: string
+  thumb: string
   name: string
   source: string
 }
 
 const cosplays: CosplayItem[] = [
-  { src: '/cosplays/halsin-1.png',     name: 'Halsin',         source: "Baldur's Gate 3" },
-  { src: '/cosplays/charwizard-1.png', name: 'Charwizard',     source: 'Pokémon Gijinka' },
-  { src: '/cosplays/abel-1.png',       name: 'Abel the Table', source: 'Date Everything' },
-  { src: '/cosplays/hooded-1.png',     name: 'The Hooded One', source: 'Path of Exile II' },
-  { src: '/cosplays/senshi-1.png',     name: 'Senshi',         source: 'Dungeon Meshi' },
-  { src: '/cosplays/thor-1.png',       name: 'Thor',           source: 'God of War' },
+  { src: '/cosplays/halsin-1.png',     thumb: '/cosplays/thumbs/halsin-1.jpg',     name: 'Halsin',         source: "Baldur's Gate 3" },
+  { src: '/cosplays/charwizard-1.png', thumb: '/cosplays/thumbs/charwizard-1.jpg', name: 'Charwizard',     source: 'Pokémon Gijinka' },
+  { src: '/cosplays/abel-1.png',       thumb: '/cosplays/thumbs/abel-1.jpg',       name: 'Abel the Table', source: 'Date Everything' },
+  { src: '/cosplays/hooded-1.png',     thumb: '/cosplays/thumbs/hooded-1.jpg',     name: 'The Hooded One', source: 'Path of Exile II' },
+  { src: '/cosplays/senshi-1.png',     thumb: '/cosplays/thumbs/senshi-1.jpg',     name: 'Senshi',         source: 'Dungeon Meshi' },
+  { src: '/cosplays/thor-1.png',       thumb: '/cosplays/thumbs/thor-1.jpg',       name: 'Thor',           source: 'God of War' },
 ]
 
 export function Gallery() {
@@ -40,7 +41,7 @@ export function Gallery() {
               onClick={() => setSelected(item)}
             >
               <img
-                src={item.src}
+                src={item.thumb}
                 alt={item.name}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
