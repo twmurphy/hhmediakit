@@ -20,7 +20,7 @@ export function About() {
           <div className="shrink-0 flex justify-center md:block">
             <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden">
               <img
-                src="/headshots/himbo-1.png"
+                src="/headshots/himbo-1.jpg"
                 alt="Himbo Husbando"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: '50% 15%' }}
