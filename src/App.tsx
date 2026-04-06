@@ -3,6 +3,7 @@ import { About } from '@/components/About'
 import { Gallery } from '@/components/Gallery'
 import { VideoSection } from '@/components/VideoSection'
 import { Workshops } from '@/components/Workshops'
+import { Contact } from '@/components/Contact'
 import { Footer } from '@/components/Footer'
 
 export default function App() {
@@ -11,8 +12,9 @@ export default function App() {
       <Hero />
       <About />
       <Gallery />
-      <VideoSection />
       <Workshops />
+      <VideoSection />
+      <Contact />
       <Footer />
     </main>
   )

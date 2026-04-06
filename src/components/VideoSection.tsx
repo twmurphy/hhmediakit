@@ -20,7 +20,7 @@ export function VideoSection() {
   }, [])
 
   return (
-    <section className="bg-[#f5f5f7] py-24 px-6">
+    <section className="bg-white py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <h2
           className="text-[#1d1d1f] leading-tight mb-12"
@@ -30,7 +30,7 @@ export function VideoSection() {
             fontSize: 'clamp(2rem, 5vw, 3rem)',
           }}
         >
-          Highlights
+          Social Media
         </h2>
 
         {/* YouTube — full width */}

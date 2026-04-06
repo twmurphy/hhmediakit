@@ -17,12 +17,15 @@ export function About() {
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
 
           {/* Headshot */}
-          <div className="w-full md:w-96 shrink-0">
-            <img
-              src="/headshots/himbo-1.png"
-              alt="Himbo Husbando"
-              className="w-full rounded-2xl object-cover"
-            />
+          <div className="shrink-0 flex justify-center md:block">
+            <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden">
+              <img
+                src="/headshots/himbo-1.png"
+                alt="Himbo Husbando"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: '50% 15%' }}
+              />
+            </div>
           </div>
 
           {/* Content */}
@@ -46,18 +49,17 @@ export function About() {
             </p>
 
             {/* Social links */}
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="flex flex-wrap gap-3 mt-2">
               {socials.map(({ label, href, Icon }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d2d2d7] bg-white text-[#1d1d1f] text-sm hover:bg-[#1d1d1f] hover:text-white hover:border-[#1d1d1f] transition-colors duration-200"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
+                  aria-label={label}
+                  className="flex items-center justify-center w-11 h-11 rounded-full border border-[#d2d2d7] bg-white text-[#1d1d1f] hover:bg-[#1d1d1f] hover:text-white hover:border-[#1d1d1f] transition-colors duration-200"
                 >
-                  <Icon size={14} />
-                  {label}
+                  <Icon size={20} />
                 </a>
               ))}
             </div>
