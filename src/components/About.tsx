@@ -1,9 +1,13 @@
-const socials = [
-  { label: 'TikTok', href: 'https://www.tiktok.com/@himbohusbando' },
-  { label: 'Instagram', href: 'https://www.instagram.com/himbohusbando' },
-  { label: 'Bluesky', href: 'https://bsky.app/profile/himbohusando.bsky.social' },
-  { label: 'YouTube', href: 'https://www.youtube.com/@himbohusbando' },
-  { label: 'Twitch', href: 'https://www.twitch.tv/himbohusbando' },
+import { FaTiktok, FaInstagram, FaYoutube, FaTwitch } from 'react-icons/fa6'
+import { SiBluesky } from 'react-icons/si'
+import type { IconType } from 'react-icons'
+
+const socials: { label: string; href: string; Icon: IconType }[] = [
+  { label: 'TikTok',    href: 'https://www.tiktok.com/@himbohusbando',              Icon: FaTiktok },
+  { label: 'Instagram', href: 'https://www.instagram.com/himbohusbando',            Icon: FaInstagram },
+  { label: 'Bluesky',   href: 'https://bsky.app/profile/himbohusando.bsky.social',  Icon: SiBluesky },
+  { label: 'YouTube',   href: 'https://www.youtube.com/@himbohusbando',             Icon: FaYoutube },
+  { label: 'Twitch',    href: 'https://www.twitch.tv/himbohusbando',                Icon: FaTwitch },
 ]
 
 export function About() {
@@ -13,7 +17,7 @@ export function About() {
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
 
           {/* Headshot */}
-          <div className="w-full md:w-72 shrink-0">
+          <div className="w-full md:w-96 shrink-0">
             <img
               src="/headshots/himbo-1.png"
               alt="Himbo Husbando"
@@ -38,22 +42,21 @@ export function About() {
               and a genuine belief that everyone around him is capable of greatness. That
               philosophy shows up in everything he does, from honoring classic construction
               techniques like sewing, foam, and leatherworking to exploring forward-thinking
-              technology like CAD, 3D printing, and electronics. He brings that same breadth
-              and curiosity to the judging table. Whether you've been building for under a
-              year or more than a decade, he's in your corner.
+              technology like CAD, 3D printing, and electronics.
             </p>
 
             {/* Social links */}
             <div className="flex flex-wrap gap-2 mt-2">
-              {socials.map(({ label, href }) => (
+              {socials.map(({ label, href, Icon }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-1.5 rounded-full border border-[#d2d2d7] bg-white text-[#1d1d1f] text-sm hover:bg-[#1d1d1f] hover:text-white hover:border-[#1d1d1f] transition-colors duration-200"
+                  className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d2d2d7] bg-white text-[#1d1d1f] text-sm hover:bg-[#1d1d1f] hover:text-white hover:border-[#1d1d1f] transition-colors duration-200"
                   style={{ fontFamily: 'Poppins, sans-serif' }}
                 >
+                  <Icon size={14} />
                   {label}
                 </a>
               ))}

@@ -30,7 +30,7 @@ export function Lightbox({ item, onClose, onPrev, onNext }: LightboxProps) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/20 z-50 flex items-center justify-center gap-3 px-3 py-3"
+      className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center gap-3 px-3 py-3"
       onClick={onClose}
     >
       {/* Prev button */}

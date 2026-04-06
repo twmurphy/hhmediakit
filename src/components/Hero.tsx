@@ -1,6 +1,6 @@
 export function Hero() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-white px-6 text-center">
+    <section className="h-[85vh] flex flex-col items-center justify-center bg-white px-6 text-center">
       <h1
         className="font-black text-[#1d1d1f] leading-none tracking-tight"
         style={{
@@ -15,7 +15,7 @@ export function Hero() {
         className="mt-6 text-[#6e6e73] text-lg tracking-wide uppercase"
         style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '0.2em' }}
       >
-        Cosplayer · Creator · Judge
+        Cosplayer · Maker · Content Creator
       </p>
     </section>
   )
