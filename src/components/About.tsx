@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { FaTiktok, FaInstagram, FaYoutube, FaTwitch } from 'react-icons/fa6'
 import { SiBluesky } from 'react-icons/si'
 import type { IconType } from 'react-icons'
+import { Lightbox } from './Lightbox'
 
 const socials: { label: string; href: string; Icon: IconType }[] = [
   { label: 'TikTok',    href: 'https://www.tiktok.com/@himbohusbando',              Icon: FaTiktok },
@@ -10,7 +12,16 @@ const socials: { label: string; href: string; Icon: IconType }[] = [
   { label: 'Twitch',    href: 'https://www.twitch.tv/himbohusbando',                Icon: FaTwitch },
 ]
 
+const HEADSHOT = {
+  src: '/headshots/himbo-1.jpg',
+  thumb: '/headshots/himbo-1.jpg',
+  name: 'Himbo Husbando',
+  photographer: { label: '@baggincats_cosplay', href: 'https://www.instagram.com/baggincats_cosplay' },
+}
+
 export function About() {
+  const [open, setOpen] = useState(false)
+
   return (
     <section className="bg-[#f5f5f7] py-24 px-6">
       <div className="max-w-5xl mx-auto">
@@ -18,7 +29,10 @@ export function About() {
 
           {/* Headshot */}
           <div className="shrink-0 flex justify-center md:block">
-            <div className="w-80 h-80 md:w-[28rem] md:h-[28rem] rounded-full overflow-hidden">
+            <div
+              className="w-80 h-80 md:w-[28rem] md:h-[28rem] rounded-full overflow-hidden cursor-pointer"
+              onClick={() => setOpen(true)}
+            >
               <img
                 src="/headshots/himbo-1.jpg"
                 alt="Himbo Husbando"
@@ -67,6 +81,7 @@ export function About() {
 
         </div>
       </div>
+      <Lightbox item={open ? HEADSHOT : null} onClose={() => setOpen(false)} />
     </section>
   )
 }
