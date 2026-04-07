@@ -34,7 +34,7 @@ export function About() {
               onClick={() => setOpen(true)}
             >
               <img
-                src="/headshots/himbo-1.jpg"
+                src="/headshots/himbo-1-thumb.jpg"
                 alt="Himbo Husbando"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: '50% 15%' }}
