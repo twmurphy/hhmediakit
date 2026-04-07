@@ -14,7 +14,7 @@ const socials: { label: string; href: string; Icon: IconType }[] = [
 
 const HEADSHOT = {
   src: '/headshots/himbo-1.jpg',
-  thumb: '/headshots/himbo-1.jpg',
+  thumb: '/headshots/himbo-1-thumb.jpg',
   name: 'Himbo Husbando',
   photographer: { label: '@baggincats_cosplay', href: 'https://www.instagram.com/baggincats_cosplay' },
 }
