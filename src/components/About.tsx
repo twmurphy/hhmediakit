@@ -57,10 +57,10 @@ export function About() {
             </h2>
             <p className="text-[#1d1d1f] text-base leading-relaxed max-w-prose">
               HimboHusbando is a Brooklyn-based cosplayer known for big, lovable characters
-              and a genuine belief that everyone around him is capable of greatness. That
-              philosophy shows up in everything he does, from honoring classic construction
-              techniques like sewing, foam, and leatherworking to exploring forward-thinking
-              technology like CAD, 3D printing, and electronics.
+              and a genuine belief that everyone around him is capable of greatness, no matter
+              how they approach the craft. That philosophy shows up in everything he does, from
+              honoring classic construction techniques like sewing, foam, and leatherworking
+              to exploring forward-thinking technology like CAD, 3D printing, and electronics.
             </p>
 
             {/* Social links */}
