@@ -30,15 +30,16 @@ export function About() {
           {/* Headshot */}
           <div className="shrink-0 flex justify-center md:block">
             <div
-              className="w-80 h-80 md:w-[28rem] md:h-[28rem] rounded-full overflow-hidden cursor-pointer"
+              className="relative w-80 h-80 md:w-[28rem] md:h-[28rem] rounded-full overflow-hidden cursor-pointer group"
               onClick={() => setOpen(true)}
             >
               <img
                 src="/headshots/himbo-1-thumb.jpg"
                 alt="Himbo Husbando"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 style={{ objectPosition: '50% 15%' }}
               />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
             </div>
           </div>
 
