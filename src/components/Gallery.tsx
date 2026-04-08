@@ -3,7 +3,6 @@ import { Lightbox } from './Lightbox'
 
 export interface CosplayItem {
   src: string
-  thumb: string
   name: string
   source?: string
   photographer?: { label: string; href: string }
@@ -12,12 +11,12 @@ export interface CosplayItem {
 const BAGGINCATS = { label: '@baggincats_cosplay', href: 'https://www.instagram.com/baggincats_cosplay' }
 
 const cosplays: CosplayItem[] = [
-  { src: '/cosplays/halsin-1.jpg',     thumb: '/cosplays/thumbs/halsin-1.jpg',     name: 'Halsin',         source: "Baldur's Gate 3", photographer: BAGGINCATS },
-  { src: '/cosplays/charwizard-1.jpg', thumb: '/cosplays/thumbs/charwizard-1.jpg', name: 'Charwizard',     source: 'Pokémon Gijinka',  photographer: BAGGINCATS },
-  { src: '/cosplays/abel-1.jpg',       thumb: '/cosplays/thumbs/abel-1.jpg',       name: 'Abel the Table', source: 'Date Everything',  photographer: BAGGINCATS },
-  { src: '/cosplays/hooded-1.jpg',     thumb: '/cosplays/thumbs/hooded-1.jpg',     name: 'The Hooded One', source: 'Path of Exile II', photographer: BAGGINCATS },
-  { src: '/cosplays/senshi-1.jpg',     thumb: '/cosplays/thumbs/senshi-1.jpg',     name: 'Senshi',         source: 'Dungeon Meshi',    photographer: BAGGINCATS },
-  { src: '/cosplays/thor-1.jpg',       thumb: '/cosplays/thumbs/thor-1.jpg',       name: 'Thor',           source: 'God of War',       photographer: BAGGINCATS },
+  { src: '/cosplays/halsin-1.jpg',     name: 'Halsin',         source: "Baldur's Gate 3", photographer: BAGGINCATS },
+  { src: '/cosplays/charwizard-1.jpg', name: 'Charwizard',     source: 'Pokémon Gijinka',  photographer: BAGGINCATS },
+  { src: '/cosplays/abel-1.jpg',       name: 'Abel the Table', source: 'Date Everything',  photographer: BAGGINCATS },
+  { src: '/cosplays/hooded-1.jpg',     name: 'The Hooded One', source: 'Path of Exile II', photographer: BAGGINCATS },
+  { src: '/cosplays/senshi-1.jpg',     name: 'Senshi',         source: 'Dungeon Meshi',    photographer: BAGGINCATS },
+  { src: '/cosplays/thor-1.jpg',       name: 'Thor',           source: 'God of War',       photographer: BAGGINCATS },
 ]
 
 export function Gallery() {
@@ -43,11 +42,11 @@ export function Gallery() {
           {cosplays.map((item, i) => (
             <div
               key={item.src}
-              className="aspect-[9/16] overflow-hidden rounded-2xl bg-[#f5f5f7] cursor-pointer group relative"
+              className="aspect-[4/5] overflow-hidden rounded-2xl bg-[#f5f5f7] cursor-pointer group relative"
               onClick={() => setSelectedIndex(i)}
             >
               <img
-                src={item.thumb}
+                src={item.src}
                 alt={item.name}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />

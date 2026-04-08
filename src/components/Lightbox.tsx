@@ -48,8 +48,8 @@ export function Lightbox({ item, onClose, onPrev, onNext }: LightboxProps) {
       <div
         className="relative bg-[#1c1c1e] rounded-2xl overflow-hidden"
         style={{
-          width: 'min(92vw, calc(92vh * 2 / 3))',
-          height: 'min(92vh, calc(92vw * 3 / 2))',
+          width: 'min(92vw, calc(92vh * 4 / 5))',
+          height: 'min(92vh, calc(92vw * 5 / 4))',
         }}
         onClick={e => e.stopPropagation()}
       >
